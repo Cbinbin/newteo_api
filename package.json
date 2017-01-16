@@ -1,0 +1,29 @@
+{
+  "name": "newteo_api",
+  "version": "3.0.0",
+  "description": "this is api",
+  "main": "node server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cbinbin/newteo_api.git"
+  },
+  "author": "c",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cbinbin/newteo_api/issues"
+  },
+  "homepage": "https://github.com/Cbinbin/newteo_api#readme",
+  "dependencies": {
+    "cors": "^2.8.1",
+    "crypto": "0.0.3",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.2",
+    "body-parser": "^1.15.2",
+    "superagent": "^2.3.0"
+  }
+}
