@@ -13,7 +13,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 require('./mongodb')
 require('dotenv').config()
 
-app.use('/wechat', routes.wechat)
+//////weixin
+const wechat = require('wechat')
+	, config = {
+	token: process.env.WX_TOKEN,
+	appid: process.env.WX_APPID,
+	encodingAESKey: process.env.WX_EC_AESKEY
+}
+app.use(express.query())
+app.use('/wechat', wechat(config, routes.wechat))
+//////
 
 app.listen(port, ()=> {
 	console.log('Server is ruuning on port: ' + port)
