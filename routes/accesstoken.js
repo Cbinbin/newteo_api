@@ -11,6 +11,7 @@ router.get('/', (req, res)=> {
 	.get(`${actoken}?appid=${APPID}&secret=${SECRET}&code=${CODE}&grant_type=authorization_code`)
 	.end((err, rat)=> {
 		if(err) res.send(err)
+		console.log(rat)
 		res.send(rat)
 	})
 })

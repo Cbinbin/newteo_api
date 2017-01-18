@@ -9,6 +9,7 @@ const cors = require('cors')
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use('/storage', express.static('storage'))
 
 require('./mongodb')
 require('dotenv').config()
@@ -26,6 +27,8 @@ app.use('/wechat', wechat(config, routes.wechat))
 
 app.use('/code', routes.code)
 app.use('/accesstoken', routes.accesstoken)
+app.use('/requirement', routes.requirement)
+app.use('/partner', routes.partner)
 
 app.listen(port, ()=> {
 	console.log('Server is ruuning on port: ' + port)

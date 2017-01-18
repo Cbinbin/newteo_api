@@ -7,8 +7,8 @@ const requirementSchema = new Schema({
 	},
 	phone: {
 		type: Number,
-		min: 10000000000,
-		max: 19999999999
+		min: 13000000000,
+		max: 18999999999
 	},
 	company: {
 		type: String

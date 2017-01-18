@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 	, Schema = mongoose.Schema
+	, Img = require('./Img')
 
 const productSchema = new Schema({
 	title: {  //项目名称
