@@ -24,6 +24,9 @@ app.use(express.query())
 app.use('/wechat', wechat(config, routes.wechat))
 //////
 
+app.use('/code', routes.code)
+app.use('/accesstoken', routes.accesstoken)
+
 app.listen(port, ()=> {
 	console.log('Server is ruuning on port: ' + port)
 	console.log('Use Ctrl-C to stop')

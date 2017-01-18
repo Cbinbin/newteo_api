@@ -1,7 +1,7 @@
 const router = require('express').Router()
 	, crypto = require('crypto')
 
-// router.post('/', (req, res)=> {
+// router.get('/', (req, res)=> {
 // 	var signature = req.query.signature
 // 		, timestamp = req.query.timestamp
 // 		, nonce = req.query.nonce
@@ -14,7 +14,7 @@ const router = require('express').Router()
 // 	return res
 // })
 
-router.use('/', (req, res, next)=> {
+router.post('/', (req, res, next)=> {
 	var message = req.weixin
 		, member1 = process.env.CJB
 	console.log(message)
