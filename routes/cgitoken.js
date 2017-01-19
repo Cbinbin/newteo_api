@@ -1,18 +1,17 @@
 const router = require('express').Router()
 	, request = require('superagent')
 	, apis = require('../utils/wxapis')
-	, actoken = apis.actoken
+	, cgitoken = apis.cgitoken
 
 router.get('/', (req, res)=> {
 	const APPID = process.env.APPID
 		, SECRET = process.env.SECRET
 		, CODE = req.query.code
 	request
-	.get(`${actoken}?appid=${APPID}&secret=${SECRET}&code=${CODE}&grant_type=authorization_code`)
+	.get(`${cgitoken}?grant_type=client_credential&appid=${APPID}&secret=${SECRET}`)
 	.end((err, rat)=> {
 		if(err) res.send(err)
-		console.log(JSON.parse(rat.text)['access_token'])
-		res.send(rat)
+		res.send(JSON.parse(rat.text)['access_token'])
 	})
 })
 
