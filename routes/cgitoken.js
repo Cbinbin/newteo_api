@@ -4,8 +4,8 @@ const router = require('express').Router()
 	, cgitoken = apis.cgitoken
 
 router.get('/', (req, res)=> {
-	const APPID = process.env.APPID
-		, SECRET = process.env.SECRET
+	const APPID = process.env.WX_APPID
+		, SECRET = process.env.WX_SECRET
 		, CODE = req.query.code
 	request
 	.get(`${cgitoken}?grant_type=client_credential&appid=${APPID}&secret=${SECRET}`)

@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
 	, Schema = mongoose.Schema
-	, Logo = require('./Logo')
 	, Product = require('./Product')
 
 const partnerSchema = new Schema({
 	logo: {  //合作商Logo
-		type: Schema.Types.ObjectId, 
-		ref: 'Logo'
+		type: String
 	}, 
 	name: {  //合作商名称
 		type: String

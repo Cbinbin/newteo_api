@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 	, Schema = mongoose.Schema
+	, Partner = require('./Partner')
 	, Img = require('./Img')
 
 const productSchema = new Schema({
+	owner: {
+		type: Schema.Types.ObjectId, 
+		ref: 'Partner'
+	},
 	title: {  //项目名称
 		type: String
 	},

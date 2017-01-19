@@ -4,8 +4,8 @@ const router = require('express').Router()
 	, actoken = apis.actoken
 
 router.get('/', (req, res)=> {
-	const APPID = process.env.APPID
-		, SECRET = process.env.SECRET
+	const APPID = process.env.WX_APPID
+		, SECRET = process.env.WX_SECRET
 		, CODE = req.query.code
 	request
 	.get(`${actoken}?appid=${APPID}&secret=${SECRET}&code=${CODE}&grant_type=authorization_code`)

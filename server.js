@@ -18,7 +18,7 @@ require('dotenv').config()
 const wechat = require('wechat')
 	, config = {
 	token: process.env.WX_TOKEN,
-	appid: process.env.APPID,
+	appid: process.env.WX_APPID,
 	encodingAESKey: process.env.WX_EC_AESKEY
 }
 app.use(express.query())

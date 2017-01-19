@@ -1,5 +1,6 @@
 const router = require('express').Router()
 	, crypto = require('crypto')
+	, Requirement = require('../models/Requirement')
 
 // router.get('/', (req, res)=> {
 // 	var signature = req.query.signature
@@ -18,14 +19,16 @@ router.post('/', (req, res, next)=> {
 	var message = req.weixin
 		, member1 = process.env.CJB
 	console.log(message)
-	if(message.ToUserName === member1) { 	//成员验证
-		if(message.Content === '测试') {
-			res.reply({
-				type: 'text',
-				content: '某得倾'
-			})
-		} else {
-			res.reply('hehe')
+	if(message.FromUserName === member1) { 	//成员验证
+		switch(message.EventKey) {
+			case '需求' :
+			{
+					res.reply([{ 
+						title: '查看需求', 
+						picurl: 'http://b67ae1c2.ngrok.io/storage/index.jpeg',
+						url: 'http://b67ae1c2.ngrok.io/'
+					}])
+			} break
 		}
 	} else {
 		res.reply('枣啊，你再唔枣丢你螺母')
