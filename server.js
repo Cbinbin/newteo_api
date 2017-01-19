@@ -30,6 +30,7 @@ app.use('/accesstoken', routes.accesstoken)
 app.use('/cgitoken', routes.cgitoken)
 app.use('/requirement', routes.requirement)
 app.use('/partner', routes.partner)
+app.use('/xuqiu', routes.xuqiu)
 
 app.listen(port, ()=> {
 	console.log('Server is ruuning on port: ' + port)

@@ -4,5 +4,6 @@ module.exports = {
 	accesstoken: require('./accesstoken'),
 	cgitoken: require('./cgitoken'),
 	requirement: require('./requirement'),
-	partner: require('./partner')
+	partner: require('./partner'),
+	xuqiu: require('./xuqiu')
 }
