@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+	, moment = require('moment')
 	, Schema = mongoose.Schema
 
 const requirementSchema = new Schema({
@@ -17,8 +18,8 @@ const requirementSchema = new Schema({
 		type: String
 	},
 	create_time: {		//创建时间
-		type: Date,
-		default: Date.now
+		type: String,
+		default: moment().format('YYYY年MM月DD日   hh:mm:ss a')
 	}
 })
 module.exports = mongoose.model('Requirement', requirementSchema)

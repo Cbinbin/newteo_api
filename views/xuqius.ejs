@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style type="text/css">
-      body {padding: 50px;font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;}
-    </style>
-  </head>
-  <body>
-    <% data.map((item, index)=> { %>
-      <div key="index">
-        <h1> <%= item.id %></h1>
-        <p>姓名: <%= item.name %></p>
-        <p>电话: <%= item.phone %></p>
-        <p>公司: <%= item.company %></p>
-        <p>需求: <%= item.info %></p>
-        <p>时间: <%= item.create_time %></p>
-      </div>
-    <% }) %>
-  </body>
+<head>
+	<!-- <link rel="stylesheet" type="text/css" href="../storage/css/xuqius.css" /> -->
+	<style type="text/css">
+		body { padding: 100px 25px; }
+		h1 { float: left; margin: 10px; width: 70%; font-size: 1.5rem; }
+		p { float: left; margin: 10px; width: 70%; font-size: 2rem; }
+		.rim { float: left; margin: 20px; padding: 50px; border-style: inset; border-width: 14px; border-color: #FF7744; }
+		button { float: right; width: 18%; height: 60px; font-size: 2rem; border-radius: 2rem; box-shadow: 3px 3px 10px #373a3c; outline: none; cursor: pointer; }
+	</style>
+</head>
+<body>
+	<% data.map((item, index)=> { %>
+		<div key= "index" class= "rim">
+		<h1>ID: <%= item.id %></h1>
+		<p>称呼: <%= item.name %></p>
+		<p>电话: <%= item.phone %></p>
+		<p>公司: <%= item.company %></p>
+		<p>需求: <%= item.info %></p>
+		<p>时间: <%= item.create_time %></p>
+		<button onclick="sc()">删除</button>
+		</div>
+		<br/>
+	<% }) %>
+</body>
 </html>

@@ -1,0 +1,17 @@
+<style type="text/css">
+body {
+	padding: 100px 25px;
+}
+h1 {
+	font-size: 1.5rem;
+}
+p {
+	font-size: 2rem;
+}
+.rim {
+	padding: 50px;
+	border-style: inset;
+	border-width: 14px;
+	border-color: #FF7744;
+}
+</style>
