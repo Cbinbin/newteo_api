@@ -4,12 +4,15 @@ const express = require('express')
 	, routes = require('./routes')
 
 const cors = require('cors')
+	, path = require('path')
 	, bodyParser = require('body-parser')
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/storage', express.static('storage'))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 require('./mongodb')
 require('dotenv').config()

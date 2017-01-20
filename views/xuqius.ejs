@@ -6,10 +6,15 @@
     </style>
   </head>
   <body>
-    <h1><%= name.toUpperCase() %></h1>
-    <p>姓名: <%= name %></p>
-    <p>电话: <%= phone %></p>
-    <p>公司: <%= company %></p>
-    <p>需求: <%= info %></p>
+    <% data.map((item, index)=> { %>
+      <div key="index">
+        <h1> <%= item.id %></h1>
+        <p>姓名: <%= item.name %></p>
+        <p>电话: <%= item.phone %></p>
+        <p>公司: <%= item.company %></p>
+        <p>需求: <%= item.info %></p>
+        <p>时间: <%= item.create_time %></p>
+      </div>
+    <% }) %>
   </body>
 </html>

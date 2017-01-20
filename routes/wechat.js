@@ -1,6 +1,5 @@
 const router = require('express').Router()
 	, crypto = require('crypto')
-	, Requirement = require('../models/Requirement')
 
 // router.get('/', (req, res)=> {
 // 	var signature = req.query.signature
@@ -25,8 +24,8 @@ router.post('/', (req, res, next)=> {
 			{
 					res.reply([{ 
 						title: '查看需求', 
-						picurl: 'http://b67ae1c2.ngrok.io/storage/index.jpeg',
-						url: 'http://b67ae1c2.ngrok.io/'
+						picurl: 'http://383c6c93.ngrok.io/storage/index.jpeg',
+						url: 'http://383c6c93.ngrok.io/xuqiu'
 					}])
 			} break
 		}
