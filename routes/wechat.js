@@ -39,17 +39,19 @@ router.post('/', (req, res, next)=> {
 					picurl: `${host.wx}storage/index.jpeg`,
 					url: `${host.wx}xuqiu`
 				}])
-			} else if(message.Content === '删除') {
-				Requirement.findOne({_id: ''})
-				.exec((err, requment)=> {
-					if(err) return res.reply('噢，出错鸟')
-					else if(!requment) return res.reply('ID输入有误！')
-					res.reply({ 
-						type: 'text', 
-						content: `${requment}\n你确定删除这个？`
-					})
-				})
-			} else {
+			} 
+			// else if(message.Content === '删除') {
+			// 	Requirement.findOne({_id: ''})
+			// 	.exec((err, requment)=> {
+			// 		if(err) return res.reply('噢，出错鸟')
+			// 		else if(!requment) return res.reply('ID输入有误！')
+			// 		res.reply({ 
+			// 			type: 'text', 
+			// 			content: `${requment}\n你确定删除这个？`
+			// 		})
+			// 	})
+			// } 
+			else {
 				res.reply('hehe')
 			}
 		} else if(message.MsgType === 'voice') {
