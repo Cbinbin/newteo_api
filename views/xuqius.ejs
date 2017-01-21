@@ -4,22 +4,54 @@
 	<!-- <link rel="stylesheet" type="text/css" href="../storage/css/xuqius.css" /> -->
 	<style type="text/css">
 		body { padding: 100px 25px; }
-		h1 { float: left; margin: 10px; width: 70%; font-size: 1.5rem; }
-		p { float: left; margin: 10px; width: 70%; font-size: 2rem; }
-		.rim { float: left; margin: 20px; padding: 50px; border-style: inset; border-width: 14px; border-color: #FF7744; }
-		button { float: right; width: 18%; height: 60px; font-size: 2rem; border-radius: 2rem; box-shadow: 3px 3px 10px #373a3c; outline: none; cursor: pointer; }
+		h1 { float: left; 
+        margin: 10px; 
+        width: 70%; 
+        font-size: 1.5rem; }
+		p { float: left; 
+        margin: 10px; 
+        width: 70%; 
+        font-size: 2rem; }
+		.rim { float: left; 
+        margin: 20px; 
+        padding: 50px; 
+        border-style: inset; 
+        border-width: 14px; 
+        border-color: #FF7744; }
+		button { float: right; 
+        width: 18%; 
+        height: 60px; 
+        font-size: 2rem; 
+        border-radius: 2rem; 
+        box-shadow: 3px 3px 10px #373a3c; 
+        outline: none; 
+        cursor: pointer; }
 	</style>
+  <script type="text/javascript">
+    function firm(id) {
+      console.log(id)
+      var tf = confirm("你确定删除这个需求吗？")
+      if(tf) {
+        fetch('http://20d5e31e.ngrok.io/requirement/'+ id, { method: 'DELETE'})
+        .then((res)=> {alert("已删除"+id)})
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+    }
+  </script>>
 </head>
 <body>
 	<% data.map((item, index)=> { %>
+  <% var id = item._id %>
 		<div key= "index" class= "rim">
-		<h1>ID: <%= item.id %></h1>
+		<h1>ID: <%= item._id %></h1>
 		<p>称呼: <%= item.name %></p>
 		<p>电话: <%= item.phone %></p>
 		<p>公司: <%= item.company %></p>
 		<p>需求: <%= item.info %></p>
 		<p>时间: <%= item.create_time %></p>
-		<button onclick="sc()">删除</button>
+		<button onclick="firm(<%= id %>)">删除</button>
 		</div>
 		<br/>
 	<% }) %>
