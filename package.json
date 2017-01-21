@@ -4,7 +4,7 @@
   "description": "this is api",
   "main": "node server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
   "repository": {
@@ -28,5 +28,9 @@
     "multer": "^1.2.1",
     "superagent": "^2.3.0",
     "wechat": "^2.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
   }
 }

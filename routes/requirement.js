@@ -2,6 +2,7 @@ const router = require('express').Router()
 	, Requirement = require('../models/Requirement')
 //
 router.post('/', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const re = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
 	if(req.body.phone.length != 11) { return res.send({error: '不是11位'})}
 	if(!re.test(req.body.phone)) { 
@@ -38,6 +39,7 @@ router.get('/:id', (req, res)=> {
 })
 //
 router.delete('/:id', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const rqId = req.params.id
 	Requirement.remove({_id: rqId}, (err)=> {
 		if(err) return res.send(err)

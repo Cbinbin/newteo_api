@@ -27,6 +27,7 @@ const logo_storage = multer.diskStorage({
 const logo_upload = multer({storage: logo_storage}).single('logo')
 
 router.post('/', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const pn = new Partner({
 		logo: null,
 		name: req.body.name ||'空',
@@ -40,6 +41,7 @@ router.post('/', (req, res)=> {
 })
 
 router.post('/:id/logo', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const paneId = req.params.id
 	logo_upload(req, res, (err)=> {
 		if(err) return res.send('something wrong')
@@ -54,6 +56,7 @@ router.post('/:id/logo', (req, res)=> {
 })
 
 router.post('/:id/product', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const paneId = req.params.id
 	const pd = new Product({
 		owner: paneId,
@@ -74,6 +77,7 @@ router.post('/:id/product', (req, res)=> {
 })
 
 router.post('/product/:id/img', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const prodId = req.params.id
 	img_upload(req, res, (err)=> {
 		if(err) return res.send('something wrong')
@@ -124,6 +128,19 @@ router.get('/:id', (req, res)=> {
 	})
 })
 
+router.patch('/:pnid/product/:pdid/to', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
+	const paneId = req.params.pnid
+		, prodId = req.params.pdid
+	Partner.findOneAndUpdate({_id: paneId}, 
+		{$push: {products: prodId}}, 
+		{new: true}, 
+		(err, partner)=> {
+			if(err) return res.send(err)
+			res.send(partner)
+		})
+})
+
 function delDoc(model, id) {
 	model.remove({_id: id})
 	.exec((err)=> {
@@ -145,6 +162,7 @@ function delImgFile(id) {
 }
 
 router.delete('/product/:id', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const prodId = req.params.id
 	Product.findOne({_id: prodId})
 	.exec((err, product)=> {
@@ -160,6 +178,7 @@ router.delete('/product/:id', (req, res)=> {
 
 
 router.delete('/:id', (req, res)=> {
+	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const paneId = req.params.id
 	Partner.findOne({_id: paneId})
 	.exec((err, partner)=> {

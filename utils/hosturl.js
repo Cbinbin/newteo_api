@@ -1,4 +1,5 @@
 module.exports = {
+	local: 'http://localhost:2017/',
 	newteo: 'http://localhost:2017/',
-	wx: 'http://20d5e31e.ngrok.io/'
+	wx: 'http://a56bee81.ngrok.io/'
 }

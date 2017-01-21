@@ -28,30 +28,28 @@
         cursor: pointer; }
 	</style>
   <script type="text/javascript">
-    function firm(id) {
-      console.log(id)
+    function firm() {
       var tf = confirm("你确定删除这个需求吗？")
       if(tf) {
-        fetch('http://20d5e31e.ngrok.io/requirement/'+ id, { method: 'DELETE'})
-        .then((res)=> {alert("已删除"+id)})
+        fetch('http://20d5e31e.ngrok.io/requirement/', { method: 'DELETE'})
+        .then((res)=> {alert("已删除")})
         .catch((err) => {
           console.log(err)
         })
       }
     }
-  </script>>
+  </script>
 </head>
 <body>
 	<% data.map((item, index)=> { %>
-  <% var id = item._id %>
 		<div key= "index" class= "rim">
-		<h1>ID: <%= item._id %></h1>
-		<p>称呼: <%= item.name %></p>
-		<p>电话: <%= item.phone %></p>
-		<p>公司: <%= item.company %></p>
-		<p>需求: <%= item.info %></p>
-		<p>时间: <%= item.create_time %></p>
-		<button onclick="firm(<%= id %>)">删除</button>
+			<h1>ID: <%= item._id %></h1>
+			<p>称呼: <%= item.name %></p>
+			<p>电话: <%= item.phone %></p>
+			<p>公司: <%= item.company %></p>
+			<p>需求: <%= item.info %></p>
+			<p>时间: <%= item.create_time %></p>
+			<button onclick="firm()">删除</button>
 		</div>
 		<br/>
 	<% }) %>
