@@ -1,6 +1,7 @@
 # newteo_api
 
 
+//  cbinbin.xyz  //
 
 ## 需求　
 ### 添加需求
@@ -102,6 +103,12 @@ key: logo
 ### 添加项目
 ```js
 POST    http://localhost:2017/partner/:Id/product?token=${token}         //合作商 Id
+```
+```js
+{
+    title: ${title},        //项目名(String)
+    description: ${description}     //项目详情(String)
+}
 ```
 => Object    
 ### 添加项目图片

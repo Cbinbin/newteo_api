@@ -25,7 +25,7 @@ const wechat = require('wechat')
 	encodingAESKey: process.env.WX_EC_AESKEY
 }
 app.use(express.query())
-app.use('/wechat', wechat(config, routes.wechat))
+app.use('/wechat', routes.wechat)
 //////
 
 app.use('/code', routes.code)
