@@ -97,6 +97,7 @@ DELETE    http://localhost:2017/partner/:Id?token=${token}         //合作商 I
 ```js
 POST    http://localhost:2017/partner/:Id/logo?token=${token}         //合作商 Id
 ```
+key: logo   
 => Object    
 ### 添加项目
 ```js
@@ -107,6 +108,7 @@ POST    http://localhost:2017/partner/:Id/product?token=${token}         //合�
 ```js
 POST    http://localhost:2017/partner/product/:Id/img?token=${token}         //项目 Id
 ```
+key: img   
 => Object    
 ### 删除项目
 ```js
