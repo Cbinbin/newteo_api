@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
 			rqms.push(item)
 		})
 		res.render('xuqius', {
-			data: rqms
+			data: rqms,
+			tt: process.env.NT_TOKEN
 		})
 	})
 })

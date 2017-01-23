@@ -11,6 +11,12 @@ const productSchema = new Schema({
 	title: {  //项目名称
 		type: String
 	},
+	online: {
+		type: Boolean
+	},
+	url: {
+		type: String
+	},
 	img: [{  //项目图片
 		type: Schema.Types.ObjectId, 
 		ref: 'Img'

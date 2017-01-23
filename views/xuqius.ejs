@@ -27,23 +27,25 @@
         outline: none; 
         cursor: pointer; }
 	</style>
-  <script type="text/javascript">
-    function firm() {
-      var tf = confirm("你确定删除这个需求吗？")
-      if(tf) {
-        fetch('http://20d5e31e.ngrok.io/requirement/', { method: 'DELETE'})
-        .then((res)=> {alert("已删除")})
-        .catch((err) => {
-          console.log(err)
-        })
-      }
-    }
-  </script>
+	<script type="text/javascript">
+	  function firm() {
+	  	var id = document.querySelector('h1').getAttribute('data-item-id')
+	  	var token = document.querySelector('h1').getAttribute('data-tt')
+	    var tf = confirm("你确定删除这个需求吗？")
+	    if(tf) {
+	      fetch('http://localhost:2017/requirement/'+id+'?token='+token, { method: 'DELETE'})
+	      .then((res)=> {alert("已删除")})
+	      .catch((err) => {
+	        alert(err)
+	      })
+	    }
+	  }
+	</script>
 </head>
 <body>
 	<% data.map((item, index)=> { %>
 		<div key= "index" class= "rim">
-			<h1>ID: <%= item._id %></h1>
+			<h1 data-item-id= "<%= item._id %>" data-tt= "<%= tt %>">ID: <%= item._id %></h1>
 			<p>称呼: <%= item.name %></p>
 			<p>电话: <%= item.phone %></p>
 			<p>公司: <%= item.company %></p>

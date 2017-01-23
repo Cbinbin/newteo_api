@@ -61,6 +61,8 @@ router.post('/:id/product', (req, res)=> {
 	const pd = new Product({
 		owner: paneId,
 		title: req.body.title ||'空',
+		online: req.body.online || false,
+		url: req.body.url || null,
 		img: req.body.img ||[ ],
 		description: req.body.description ||'空',
 	})

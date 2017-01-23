@@ -38,20 +38,32 @@ router.post('/', (req, res, next)=> {
 					title: '查看需求', 
 					picurl: `${host.wx}storage/index.jpeg`,
 					url: `${host.wx}xuqiu`
+				},
+				{ 
+					title: '1', 
+					url: ``
+				},
+				{ 
+					title: '2', 
+					url: ``
+				},
+				{ 
+					title: '3', 
+					url: ``
+				},
+				{ 
+					title: '4', 
+					url: ``
+				},
+				{ 
+					title: '5', 
+					url: ``
+				},
+				{ 
+					title: '下一页', 
+					url: ``
 				}])
-			} 
-			// else if(message.Content === '删除') {
-			// 	Requirement.findOne({_id: ''})
-			// 	.exec((err, requment)=> {
-			// 		if(err) return res.reply('噢，出错鸟')
-			// 		else if(!requment) return res.reply('ID输入有误！')
-			// 		res.reply({ 
-			// 			type: 'text', 
-			// 			content: `${requment}\n你确定删除这个？`
-			// 		})
-			// 	})
-			// } 
-			else {
+			} else {
 				res.reply('hehe')
 			}
 		} else if(message.MsgType === 'voice') {
