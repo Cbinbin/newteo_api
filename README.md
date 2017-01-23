@@ -1,7 +1,7 @@
 # newteo_api
 
 
-//  cbinbin.xyz  //
+//  http://localhost:2017  =>  https://api.newteo.com  //
 
 ## 需求　
 ### 添加需求

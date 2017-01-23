@@ -9,10 +9,10 @@ router.post('/', (req, res)=> {
 		return res.send({error: '号码无效'})
 	}
 	const requ = new Requirement({
-		name: req.body.name,
+		name: req.body.name || '空',
 		phone: req.body.phone,
-		company: req.body.company,
-		info: req.body.info,
+		company: req.body.company || '空',
+		info: req.body.info || '空',
 	})
 	requ.save((err)=> {
 		if(err) return res.send(err)

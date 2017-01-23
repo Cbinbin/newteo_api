@@ -8,7 +8,7 @@ const router = require('express').Router()
 // 		, timestamp = req.query.timestamp
 // 		, nonce = req.query.nonce
 // 		, echostr = req.query.echostr
-// 		, token = 'gagaga'
+// 		, token = process.env.WX_TOKEN
 // 		, sha1 = crypto.createHash('sha1')
 // 		, sha1Str = sha1.update([token, timestamp, nonce].sort().join('')).digest('hex')
 // 	res.writeHead(200, {'Content-Type': 'text/plain'})
@@ -20,7 +20,7 @@ router.post('/', (req, res, next)=> {
 	var message = req.weixin
 		, member1 = process.env.CJB
 	console.log(message)
-	if(message.FromUserName === member1) { 	//成员验证
+	// if(message.FromUserName === member1) { 	//成员验证
 		if(message.MsgType === 'event') {
 			switch(message.EventKey) {
 				case '需求' :
@@ -65,9 +65,9 @@ router.post('/', (req, res, next)=> {
 				res.reply('hehe')
 			}
 		}
-	} else {
-		res.reply('枣啊，再唔枣丢你螺母')
-	}
+	// } else {
+	// 	res.reply('非管理员暂不提供服务')
+	// }
 })
 
 module.exports = router
