@@ -1,5 +1,5 @@
 module.exports = {
-	local: 'https://api.newteo.com/',		//'https://api.newteo.com/',
-	newteo: 'https://api.newteo.com/',		//'https://api.newteo.com/',
-	wx: 'http://e28374d3.ngrok.io/'		//'https://api.newteo.com/'
+	local: 'http://128.199.87.121/',		//'https://api.newteo.com/',
+	newteo: 'http://128.199.87.121/',		//'https://api.newteo.com/',
+	wx: 'http://128.199.87.121/'		//'https://api.newteo.com/'
 }
