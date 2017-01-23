@@ -102,7 +102,7 @@ router.post('/product/:id/img', (req, res)=> {
 router.get('/', (req, res)=> {
 	Partner.find({ }, {__v: 0})
 	.populate({ path: 'products', 
-		select: 'title img description create_time',
+		select: 'title online url img description create_time',
 		populate: {
 			path: 'img',
 			select: 'img_url'
@@ -118,7 +118,7 @@ router.get('/:id', (req, res)=> {
 	const paneId = req.params.id
 	Partner.findOne({_id: paneId}, {__v: 0})
 	.populate({ path: 'products', 
-		select: 'title img description create_time',
+		select: 'title online url img description create_time',
 		populate: {
 			path: 'img',
 			select: 'img_url'
