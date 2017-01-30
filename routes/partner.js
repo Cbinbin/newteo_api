@@ -155,9 +155,9 @@ function delImgFile(id) {
 	Img.findOne({_id: id}, (err, img)=> {
 		if(err) return console.log(err)
 		else if(!img) return console.log('Not found ' + id)
-		fs.unlink(img.img_url.substring(22), (err)=> {
+		fs.unlink(img.img_url.substring(19), (err)=> {    //22
 			if(err) return console.log(err)
-			console.log(img.img_url.substring(22) + ' delete success')
+			console.log(img.img_url.substring(19) + ' delete success')
 			delDoc(Img, id)
 		})
 	})
@@ -200,9 +200,9 @@ router.delete('/:id', (req, res)=> {
 			})
 		})
 		if(partner.logo) {
-			fs.unlink(partner.logo.substring(22), (err)=> {
+			fs.unlink(partner.logo.substring(19), (err)=> {
 				if(err) return console.log(err)
-				console.log(partner.logo.substring(22) + ' delete success')
+				console.log(partner.logo.substring(19) + ' delete success')
 				delDoc(Partner, partner._id)
 			})
 		} else { delDoc(Partner, partner._id) }
