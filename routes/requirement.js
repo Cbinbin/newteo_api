@@ -54,6 +54,7 @@ router.get('/backstage', (req, res)=> {
 	token = process.env.NT_TOKEN
 	request.delete(`${host.wx}requirement/${rqId}?token=${token}`)
 	.end((err, result)=> {
+		if(err) return res.send(err)
 		res.send(result.text)
 	})
 })

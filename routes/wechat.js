@@ -40,7 +40,7 @@ router.post('/', (req, res, next)=> {
 				.exec((err, requments)=> {
 					if(err) return res.send(err)
 					requments.map((item)=> {
-						array_rqId.push(item._id)
+						array_rqId.push(String(item._id))
 						array_rqm.push(`姓名: ${item.name}, 
 手机号: ${item.phone}, 
 公司名: ${item.company}, 
