@@ -1,5 +1,7 @@
 const router = require('express').Router()
+	, request = require('superagent')
 	, Requirement = require('../models/Requirement')
+	, host = require('../utils/hosturl')
 //
 router.post('/', (req, res)=> {
 	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
@@ -44,6 +46,15 @@ router.delete('/:id', (req, res)=> {
 	Requirement.remove({_id: rqId}, (err)=> {
 		if(err) return res.send(err)
 		res.send('requirement is deleted success')
+	})
+})
+
+router.get('/backstage', (req, res)=> {
+	rqId = req.query.id
+	token = process.env.NT_TOKEN
+	request.delete(`${host.wx}requirement/${rqId}?token=${token}`)
+	.end((err, result)=> {
+		res.send(result.text)
 	})
 })
 

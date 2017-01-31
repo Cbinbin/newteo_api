@@ -19,8 +19,10 @@ const router = require('express').Router()
 router.post('/', (req, res, next)=> {
 	var message = req.weixin
 		, member1 = process.env.CJB
+		, array_rqId = []
+		, array_rqm = []
 	console.log(message)
-	// if(message.FromUserName === member1) { 	//成员验证
+	// if(message.FromUserName === member1) {   //成员验证
 		if(message.MsgType === 'event') {
 			switch(message.EventKey) {
 				case '需求' :
@@ -34,6 +36,20 @@ router.post('/', (req, res, next)=> {
 			}
 		} else if(message.MsgType === 'text') {
 			if(message.Content === '需求') {
+				Requirement.find({ }, {__v:0})
+				.exec((err, requments)=> {
+					if(err) return res.send(err)
+						requments.map((item)=> {
+						array_rqId.push(item._id)
+						array_rqm.push(`
+							姓名: ${item.name}, 
+							手机号: ${item.phone}, 
+							公司名: ${item.company}, 
+							描述: ${item.info}, 
+							时间: ${item.create_time}
+						`)
+					})
+				})
 				res.reply([{ 
 					title: '查看需求', 
 					picurl: `${host.wx}storage/index.jpeg`,
@@ -41,23 +57,28 @@ router.post('/', (req, res, next)=> {
 				},
 				{ 
 					title: '1', 
-					url: ``
+					description: `${array_rqm[0]}`, 
+					url: `${host.wx}requirement/backstage?id=${array_rqId[0]}`
 				},
 				{ 
 					title: '2', 
-					url: ``
+					description: `${array_rqm[1]}`, 
+					url: `${host.wx}requirement/backstage?id=${array_rqId[1]}`
 				},
 				{ 
 					title: '3', 
-					url: ``
+					description: `${array_rqm[2]}`, 
+					url: `${host.wx}requirement/backstage?id=${array_rqId[2]}`
 				},
 				{ 
 					title: '4', 
-					url: ``
+					description: `${array_rqm[3]}`, 
+					url: `${host.wx}requirement/backstage?id=${array_rqId[3]}`
 				},
 				{ 
 					title: '5', 
-					url: ``
+					description: `${array_rqm[4]}`, 
+					url: `${host.wx}requirement/backstage?id=${array_rqId[4]}`
 				},
 				{ 
 					title: '下一页', 
@@ -78,7 +99,7 @@ router.post('/', (req, res, next)=> {
 			}
 		}
 	// } else {
-	// 	res.reply('非管理员暂不提供服务')
+	//  res.reply('非管理员暂不提供服务')
 	// }
 })
 
