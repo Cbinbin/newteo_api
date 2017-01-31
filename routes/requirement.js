@@ -49,8 +49,8 @@ router.delete('/:id', (req, res)=> {
 	})
 })
 
-router.get('/backstage', (req, res)=> {
-	rqId = req.query.id
+router.get('/backstage/:id', (req, res)=> {
+	rqId = req.params.id
 	token = process.env.NT_TOKEN
 	request.delete(`${host.wx}requirement/${rqId}?token=${token}`)
 	.end((err, result)=> {

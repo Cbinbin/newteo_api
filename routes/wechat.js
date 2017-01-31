@@ -40,7 +40,7 @@ router.post('/', (req, res, next)=> {
 				.exec((err, requments)=> {
 					if(err) return res.send(err)
 					requments.map((item)=> {
-						array_rqId.push(String(item._id))
+						array_rqId.push(item._id)
 						array_rqm.push(`姓名: ${item.name}, 
 手机号: ${item.phone}, 
 公司名: ${item.company}, 
@@ -48,7 +48,7 @@ router.post('/', (req, res, next)=> {
 时间: ${item.create_time}`
 						)
 					})
-
+				
 					res.reply([{ 
 						title: '查看需求', 
 						picurl: `${host.wx}storage/index.jpeg`,
@@ -56,23 +56,23 @@ router.post('/', (req, res, next)=> {
 					},
 					{ 
 						title: `${array_rqm[0]}`, 
-						url: `${host.wx}requirement/backstage?id=${array_rqId[0]}`
+						url: `${host.wx}requirement/backstage/${array_rqId[0]}`
 					},
 					{  
 						title: `${array_rqm[1]}`, 
-						url: `${host.wx}requirement/backstage?id=${array_rqId[1]}`
+						url: `${host.wx}requirement/backstage/${array_rqId[1]}`
 					},
 					{ 
 						title: `${array_rqm[2]}`, 
-						url: `${host.wx}requirement/backstage?id=${array_rqId[2]}`
+						url: `${host.wx}requirement/backstage/${array_rqId[2]}`
 					},
 					{ 
 						title: `${array_rqm[3]}`, 
-						url: `${host.wx}requirement/backstage?id=${array_rqId[3]}`
+						url: `${host.wx}requirement/backstage/${array_rqId[3]}`
 					},
 					{ 
 						title: `${array_rqm[4]}`, 
-						url: `${host.wx}requirement/backstage?id=${array_rqId[4]}`
+						url: `${host.wx}requirement/backstage/${array_rqId[4]}`
 					},
 					{ 
 						title: `                             下一页`, 
