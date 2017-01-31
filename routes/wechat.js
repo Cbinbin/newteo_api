@@ -39,51 +39,46 @@ router.post('/', (req, res, next)=> {
 				Requirement.find({ }, {__v:0})
 				.exec((err, requments)=> {
 					if(err) return res.send(err)
-						requments.map((item)=> {
+					requments.map((item)=> {
 						array_rqId.push(item._id)
-						array_rqm.push(`
-							姓名: ${item.name}, 
-							手机号: ${item.phone}, 
-							公司名: ${item.company}, 
-							描述: ${item.info}, 
-							时间: ${item.create_time}
-						`)
+						array_rqm.push(`姓名: ${item.name}, 
+手机号: ${item.phone}, 
+公司名: ${item.company}, 
+描述: ${item.info}, 
+时间: ${item.create_time}`
+						)
 					})
+
+					res.reply([{ 
+						title: '查看需求', 
+						picurl: `${host.wx}storage/index.jpeg`,
+						url: `${host.wx}xuqiu`
+					},
+					{ 
+						title: `${array_rqm[0]}`, 
+						url: `${host.wx}requirement/backstage?id=${array_rqId[0]}`
+					},
+					{  
+						title: `${array_rqm[1]}`, 
+						url: `${host.wx}requirement/backstage?id=${array_rqId[1]}`
+					},
+					{ 
+						title: `${array_rqm[2]}`, 
+						url: `${host.wx}requirement/backstage?id=${array_rqId[2]}`
+					},
+					{ 
+						title: `${array_rqm[3]}`, 
+						url: `${host.wx}requirement/backstage?id=${array_rqId[3]}`
+					},
+					{ 
+						title: `${array_rqm[4]}`, 
+						url: `${host.wx}requirement/backstage?id=${array_rqId[4]}`
+					},
+					{ 
+						title: `                             下一页`, 
+						url: ``
+					}])
 				})
-				res.reply([{ 
-					title: '查看需求', 
-					picurl: `${host.wx}storage/index.jpeg`,
-					url: `${host.wx}xuqiu`
-				},
-				{ 
-					title: '1', 
-					description: `${array_rqm[0]}`, 
-					url: `${host.wx}requirement/backstage?id=${array_rqId[0]}`
-				},
-				{ 
-					title: '2', 
-					description: `${array_rqm[1]}`, 
-					url: `${host.wx}requirement/backstage?id=${array_rqId[1]}`
-				},
-				{ 
-					title: '3', 
-					description: `${array_rqm[2]}`, 
-					url: `${host.wx}requirement/backstage?id=${array_rqId[2]}`
-				},
-				{ 
-					title: '4', 
-					description: `${array_rqm[3]}`, 
-					url: `${host.wx}requirement/backstage?id=${array_rqId[3]}`
-				},
-				{ 
-					title: '5', 
-					description: `${array_rqm[4]}`, 
-					url: `${host.wx}requirement/backstage?id=${array_rqId[4]}`
-				},
-				{ 
-					title: '下一页', 
-					url: ``
-				}])
 			} else {
 				res.reply('hehe')
 			}
