@@ -5,5 +5,6 @@ module.exports = {
 	cgitoken: require('./cgitoken'),
 	requirement: require('./requirement'),
 	partner: require('./partner'),
-	xuqiu: require('./xuqiu')
+	xuqiu: require('./xuqiu'),
+	wxsend: require('./wxsend')
 }

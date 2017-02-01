@@ -41,14 +41,14 @@ router.post('/', (req, res, next)=> {
 					if(err) return res.send(err)
 					requments.map((item)=> {
 						array_rqId.push(item._id)
-						array_rqm.push(`姓名: ${item.name}, 
-手机号: ${item.phone}, 
-公司名: ${item.company}, 
-描述: ${item.info}, 
-时间: ${item.create_time}`
+						array_rqm.push(`姓名:   ${item.name}, 
+手机号:   ${item.phone}, 
+公司名:   ${item.company}, 
+描述:   ${item.info}, 
+时间:   ${item.create_time}`
 						)
 					})
-				
+
 					res.reply([{ 
 						title: '查看需求', 
 						picurl: `${host.wx}storage/index.jpeg`,
