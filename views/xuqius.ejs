@@ -44,14 +44,14 @@
 </head>
 <body>
 	<% data.map((item, index)=> { %>
-		<div key= "index" class= "rim">
-			<h1 >ID: <%= item._id %></h1>
+		<div key= "index" class= "rim" data-item-id= "<%= item._id %>" data-tt= "<%= tt %>">
+			<h1>ID: <%= item._id %></h1>
 			<p>称呼: <%= item.name %></p>
 			<p>电话: <%= item.phone %></p>
 			<p>公司: <%= item.company %></p>
 			<p>需求: <%= item.info %></p>
 			<p>时间: <%= item.create_time %></p>
-			<button data-item-id= "<%= item._id %>" data-tt= "<%= tt %>" onclick="firm()">删除</button>
+			<button onclick="firm()">删除</button>
 		</div>
 		<br/>
 	<% }) %>
