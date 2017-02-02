@@ -44,8 +44,8 @@
 </head>
 <body>
 	<% data.map((item, index)=> { %>
-		<div key= "index" class= "rim" data-item-id= "<%= item._id %>" data-tt= "<%= tt %>">
-			<h1>ID: <%= item._id %></h1>
+		<div key= "index" class= "rim">
+			<h1 key= "index" data-item-id= "<%= item._id %>" data-tt= "<%= tt %>">ID: <%= item._id %></h1>
 			<p>称呼: <%= item.name %></p>
 			<p>电话: <%= item.phone %></p>
 			<p>公司: <%= item.company %></p>
