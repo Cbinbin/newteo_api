@@ -33,9 +33,9 @@
 	  	var token = document.querySelector('h1').getAttribute('data-tt')
 	    var tf = confirm("你确定删除这个需求吗？")
 	    if(tf) {
-	      fetch('http://localhost:2017/requirement/'+id+'?token='+token, { method: 'DELETE'})
+	      fetch('http://cbinbin.xyz/requirement/'+id+'?token='+token, { method: 'DELETE'})
 	      .then((res)=> {alert("已删除")})
-	      .catch((err) => {
+	      .catch((err)=> {
 	        alert(err)
 	      })
 	    }
