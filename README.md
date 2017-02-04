@@ -53,7 +53,8 @@ POST    http://localhost:2017/partner?token=${token}
 ```js
 {
     name: ${name},        //公司名(String)
-    introduction: ${introduction}        //公司简介(String)
+    introduction: ${introduction},        //公司简介(String)
+    description: ${description}     //详情描述(String)
 }
 ```
 =>    
@@ -63,11 +64,11 @@ POST    http://localhost:2017/partner?token=${token}
     "logo": "xxx",
     "name": "xxx",
     "introduction": "xxx",
+    "description": "xxx",
     "create_time": "xxx",
     "products": [{
         "_id": "xxx",        //项目 Id
         "title": "xxx",
-        "description": "xxx",
         "create_time": "xxx",
         "img": [{
             "_id": "xxx",        //图片 Id
@@ -106,8 +107,7 @@ POST    http://localhost:2017/partner/:Id/product?token=${token}         //合�
 ```
 ```js
 {
-    title: ${title},        //项目名(String)
-    description: ${description}     //项目详情(String)
+    title: ${title}        //项目名(String)
 }
 ```
 => Object    
@@ -123,4 +123,3 @@ DELETE    http://localhost:2017/partner/product/:Id?token=${token}         //项
 ```
 => 'product delete success'    
 
-需求查看可在微信公众号查看，删除暂未实现

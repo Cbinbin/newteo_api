@@ -11,7 +11,10 @@ const partnerSchema = new Schema({
 	},
 	introduction: {  //合作商介绍
 		type: String
-		},
+	},
+	description: {  //描述
+		type: String
+	},
 	products: [{  //合作项目
 		type: Schema.Types.ObjectId, 
 		ref: 'Product'

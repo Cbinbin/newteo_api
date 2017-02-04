@@ -21,9 +21,6 @@ const productSchema = new Schema({
 		type: Schema.Types.ObjectId, 
 		ref: 'Img'
 	}],
-	description: {  //项目描述
-		type: String
-	},
 	create_time: {  //创建时间
 		type: Date,
 		default: Date.now

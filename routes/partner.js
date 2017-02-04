@@ -30,9 +30,10 @@ router.post('/', (req, res)=> {
 	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const pn = new Partner({
 		logo: null,
-		name: req.body.name ||'空',
-		introduction: req.body.introduction ||'空',
-		products: req.body.products ||[ ],
+		name: req.body.name || '空',
+		introduction: req.body.introduction || '空',
+		description: req.body.description || '空',
+		products: req.body.products || [ ],
 	})
 	pn.save((err)=> {
 		if(err) return res.send(err)
@@ -60,11 +61,10 @@ router.post('/:id/product', (req, res)=> {
 	const paneId = req.params.id
 	const pd = new Product({
 		owner: paneId,
-		title: req.body.title ||'空',
+		title: req.body.title || '空',
 		online: req.body.online || false,
 		url: req.body.url || null,
-		img: req.body.img ||[ ],
-		description: req.body.description ||'空',
+		img: req.body.img || [ ]
 	})
 	pd.save((err)=> {
 		if(err) return res.send(err)
