@@ -87,39 +87,42 @@ router.post('/', (req, res, next)=> {
 						title: `                              共${ye}页`, 
 						url: ``
 					}])
-				} else if(n.test(page)) {
-					if(page <= ye) {
-						res.reply([{ 
-							title: '查看需求', 
-							picurl: `${host.wx}storage/index.jpeg`,
-							url: `${host.wx}xuqiu`
-						},
-						{ 
-							title: `${array_rqm[(page-1)*5]}`, 
-							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5]}`
-						},
-						{  
-							title: `${array_rqm[(page-1)*5+1]}`, 
-							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+1]}`
-						},
-						{ 
-							title: `${array_rqm[(page-1)*5+2]}`, 
-							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+2]}`
-						},
-						{ 
-							title: `${array_rqm[(page-1)*5+3]}`, 
-							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+3]}`
-						},
-						{ 
-							title: `${array_rqm[(page-1)*5+4]}`, 
-							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+4]}`
-						},
-						{ 
-							title: `                              共${ye}页`, 
-							url: ``
-						}])
-					} else {
-						res.reply(`总共只有${ye}页`)
+				} else if((message.Content.substring(0, 1) == '第' && message.Content.substring(2, 3) == '页') || 
+				(message.Content.substring(0, 1) == '第' && message.Content.substring(3, 4) == '页')) {
+					if(n.test(page)) {
+						if(page <= ye) {
+							res.reply([{ 
+								title: '查看需求', 
+								picurl: `${host.wx}storage/index.jpeg`,
+								url: `${host.wx}xuqiu`
+							},
+							{ 
+								title: `${array_rqm[(page-1)*5]}`, 
+								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5]}`
+							},
+							{  
+								title: `${array_rqm[(page-1)*5+1]}`, 
+								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+1]}`
+							},
+							{ 
+								title: `${array_rqm[(page-1)*5+2]}`, 
+								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+2]}`
+							},
+							{ 
+								title: `${array_rqm[(page-1)*5+3]}`, 
+								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+3]}`
+							},
+							{ 
+								title: `${array_rqm[(page-1)*5+4]}`, 
+								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+4]}`
+							},
+							{ 
+								title: `                              共${ye}页`, 
+								url: ``
+							}])
+						} else {
+							res.reply(`总共只有${ye}页`)
+						}
 					}
 				} else {
 					res.reply('hehe')
