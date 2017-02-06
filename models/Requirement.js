@@ -18,8 +18,7 @@ const requirementSchema = new Schema({
 		type: String
 	},
 	create_time: {		//创建时间
-		type: String,
-		default: moment().format('LLLL')
+		type: String
 	}
 })
 module.exports = mongoose.model('Requirement', requirementSchema)

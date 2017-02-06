@@ -4,6 +4,24 @@ const router = require('express').Router()
 	, host = require('../utils/hosturl')
 //
 router.post('/', (req, res)=> {
+	var nowdate = new Date()
+	, year = nowdate.getFullYear()
+	, month = nowdate.getMonth() + 1
+	, day = nowdate.getDate()
+	, week = {
+		'0': '\u65e5',
+		'1': '\u4e00',
+		'2': '\u4e8c',
+		'3': '\u4e09',
+		'4': '\u56db',
+		'5': '\u4e94',
+		'6': '\u516d'
+	}
+	, hour = nowdate.getHours()
+	, minute = nowdate.getMinutes()
+	, second = nowdate.getSeconds()
+	, datestr = year + '年' + month + '月' + day + '日  星期' + week[nowdate.getDay()] + '  ' + hour + ':' + minute + ':' + second
+
 	if(req.query.token != process.env.NT_TOKEN) return res.send('Invalid token')
 	const re = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
 	if(req.body.phone.length != 11) { return res.send({error: '不是11位'})}
@@ -15,6 +33,7 @@ router.post('/', (req, res)=> {
 		phone: req.body.phone,
 		company: req.body.company || '空',
 		info: req.body.info || '空',
+		create_time: datestr
 	})
 	requ.save((err)=> {
 		if(err) return res.send(err)
