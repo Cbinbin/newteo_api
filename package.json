@@ -27,7 +27,8 @@
     "mongoose": "^4.7.2",
     "multer": "^1.2.1",
     "superagent": "^2.3.0",
-    "wechat": "^2.0.3"
+    "wechat": "^2.0.3",
+    "wechat-api": "^1.32.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
