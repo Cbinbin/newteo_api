@@ -1,4 +1,5 @@
 module.exports = {
+	home: require('./home'),
 	wechat: require('./wechat'),
 	code: require('./code'),
 	accesstoken: require('./accesstoken'),

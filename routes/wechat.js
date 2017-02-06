@@ -19,14 +19,14 @@ const router = require('express').Router()
 router.post('/', (req, res, next)=> {
 	var message = req.weixin
 		, openid = message.FromUserName
-		, page = message.Content.substring(4) ? '未来才有（^-^）' : (
-			message.Content.substring(3) ? message.Content.substring(1,3) : message.Content.substring(1,2)
-		)
 		, member1 = process.env.CJB
 		, array_rqId = []
 		, array_rqm = []
 		, ye
-		, n = /^\d{1,2}$/
+		, cn = ['\u4E00', '\u4E8C', '\u4E09', '\u56DB', '\u4E94', '\u516D', '\u4E03', '\u516B', '\u4E5D', '\u5341']
+		, xq = /\u9700\u6C42/g			// 9700 (需)    6C42 (求)
+		, djy = /\u7B2C+\d{1,2}|\u4E00|\u4E8C|\u4E09|\u56DB|\u4E94|\u516D|\u4E03|\u516B|\u4E5D|\u5341+\u9875/g
+
 	console.log(message)
 	// if(message.FromUserName === member1) {   //成员验证
 		if(message.MsgType === 'event') {
@@ -40,6 +40,8 @@ router.post('/', (req, res, next)=> {
 					}])
 				} break
 			}
+
+
 		} else if(message.MsgType === 'text') {
 			Requirement.find({ }, {__v:0})
 			.exec((err, requments)=> {
@@ -57,7 +59,7 @@ router.post('/', (req, res, next)=> {
 				if((array_rqm.length%5) > 0) { ye = parseInt(array_rqm.length/5) + 1 }
 				else ye = parseInt(array_rqm.length/5)
 				//
-				if(message.Content === '需求') {
+				if(xq.test(message.Content)) {
 					res.reply([{ 
 						title: '查看需求', 
 						picurl: `${host.wx}storage/index.jpeg`,
@@ -87,57 +89,96 @@ router.post('/', (req, res, next)=> {
 						title: `                              共${ye}页`, 
 						url: ``
 					}])
-				} else if((message.Content.substring(0, 1) == '第' && message.Content.substring(2, 3) == '页') || 
-				(message.Content.substring(0, 1) == '第' && message.Content.substring(3, 4) == '页')) {
-					if(n.test(page)) {
-						if(page <= ye) {
-							res.reply([{ 
-								title: '查看需求', 
-								picurl: `${host.wx}storage/index.jpeg`,
-								url: `${host.wx}xuqiu`
-							},
-							{ 
-								title: `${array_rqm[(page-1)*5]}`, 
-								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5]}`
-							},
-							{  
-								title: `${array_rqm[(page-1)*5+1]}`, 
-								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+1]}`
-							},
-							{ 
-								title: `${array_rqm[(page-1)*5+2]}`, 
-								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+2]}`
-							},
-							{ 
-								title: `${array_rqm[(page-1)*5+3]}`, 
-								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+3]}`
-							},
-							{ 
-								title: `${array_rqm[(page-1)*5+4]}`, 
-								url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+4]}`
-							},
-							{ 
-								title: `                              共${ye}页`, 
-								url: ``
-							}])
-						} else {
-							res.reply(`总共只有${ye}页`)
-						}
+				} else if(djy.test(message.Content)) {
+					var want = String(message.Content.match(/\u7B2C\d{1,2}\u9875/g))    //提取
+						, page = String(want.match(/\d{1,2}/g))
+					if(page <= ye) {
+						res.reply([{ 
+							title: '查看需求', 
+							picurl: `${host.wx}storage/index.jpeg`,
+							url: `${host.wx}xuqiu`
+						},
+						{ 
+							title: `${array_rqm[(page-1)*5]}`, 
+							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5]}`
+						},
+						{  
+							title: `${array_rqm[(page-1)*5+1]}`, 
+							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+1]}`
+						},
+						{ 
+							title: `${array_rqm[(page-1)*5+2]}`, 
+							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+2]}`
+						},
+						{ 
+							title: `${array_rqm[(page-1)*5+3]}`, 
+							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+3]}`
+						},
+						{ 
+							title: `${array_rqm[(page-1)*5+4]}`, 
+							url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+4]}`
+						},
+						{ 
+							title: `           第${page}页                           共${ye}页`, 
+							url: ``
+						}])
+					} else {
+						res.reply(`总共只有${ye}页`)
 					}
 				} else {
 					res.reply('hehe')
 				}
 			})
+
+
 		} else if(message.MsgType === 'voice') {
-			if(message.Recognition === '需求') {
+			if(xq.test(message.Recognition)) {
 				res.reply([{ 
 					title: '查看需求', 
 					picurl: `${host.wx}storage/index.jpeg`,
 					url: `${host.wx}xuqiu`
 				}])
+			} else if(djy.test(message.Content)) {
+				var want = String(message.Content.match(/\u7B2C\d{1,2}\u9875/g))    //提取
+					, page = String(want.match(/\d{1,2}/g))
+				if(page <= ye) {
+					res.reply([{ 
+						title: '查看需求', 
+						picurl: `${host.wx}storage/index.jpeg`,
+						url: `${host.wx}xuqiu`
+					},
+					{ 
+						title: `${array_rqm[(page-1)*5]}`, 
+						url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5]}`
+					},
+					{  
+						title: `${array_rqm[(page-1)*5+1]}`, 
+						url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+1]}`
+					},
+					{ 
+						title: `${array_rqm[(page-1)*5+2]}`, 
+						url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+2]}`
+					},
+					{ 
+						title: `${array_rqm[(page-1)*5+3]}`, 
+						url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+3]}`
+					},
+					{ 
+						title: `${array_rqm[(page-1)*5+4]}`, 
+						url: `${host.wx}requirement/backstage/${array_rqId[(page-1)*5+4]}`
+					},
+					{ 
+						title: `           第${page}页                           共${ye}页`, 
+						url: ``
+					}])
+				} else {
+					res.reply(`总共只有${ye}页`)
+				}
 			} else {
 				res.reply('hehe')
 			}
+
+
 		} else {
 			res.reply('输入有误')
 		}

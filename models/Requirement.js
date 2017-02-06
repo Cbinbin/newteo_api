@@ -19,7 +19,7 @@ const requirementSchema = new Schema({
 	},
 	create_time: {		//创建时间
 		type: String,
-		default: moment().format('YYYY年MM月DD日   hh:mm:ss a')
+		default: moment(Date.now()).format('YYYY年MM月DD日   hh:mm:ss a')
 	}
 })
 module.exports = mongoose.model('Requirement', requirementSchema)

@@ -28,6 +28,7 @@ app.use(express.query())
 app.use('/wechat', wechat(config, routes.wechat))
 //////
 
+app.use('/', routes.home)
 app.use('/code', routes.code)
 app.use('/accesstoken', routes.accesstoken)
 app.use('/cgitoken', routes.cgitoken)

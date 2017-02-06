@@ -1,5 +1,5 @@
 module.exports = {
-	local: 'https://api.newteo.com/',
-	newteo: 'https://api.newteo.com/',
-	wx:'https://api.newteo.com/'
+	local: 'http://cbinbin.xyz/',
+	newteo: 'http://cbinbin.xyz/',
+	wx: 'http://cbinbin.xyz/'    //'https://api.newteo.com/'
 }
