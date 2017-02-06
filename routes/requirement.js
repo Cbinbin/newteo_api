@@ -17,7 +17,7 @@ router.post('/', (req, res)=> {
 		'5': '\u4e94',
 		'6': '\u516d'
 	}
-	, hour = nowdate.getHours()
+	, hour = nowdate.getHours() + 8
 	, minute = nowdate.getMinutes()
 	, second = nowdate.getSeconds()
 	, datestr = year + '年' + month + '月' + day + '日  星期' + week[nowdate.getDay()] + '  ' + hour + ':' + minute + ':' + second
