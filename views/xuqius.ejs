@@ -33,10 +33,10 @@
 			var token = document.querySelector('h1').getAttribute('data-tt')
 			var tf = confirm("你确定删除这个需求吗？")
 			if(tf) {
-				fetch('http://cbinbin.xyz/requirement/'+id+'?token='+token, { method: 'DELETE'})
+				fetch('https://api.newteo.com/requirement/'+id+'?token='+token, { method: 'DELETE'})
 				.then((res)=> {
 					alert("已删除")
-					location.href = 'http://cbinbin.xyz/xuqiu'
+					location.href = 'https://api.newteo.com/xuqiu'
 				})
 				.catch((err)=> {
 					alert(err)
