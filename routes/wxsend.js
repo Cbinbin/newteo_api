@@ -63,9 +63,9 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              下一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
-			wxapi.sendNews(openid, articles, (err)=> {
+			wxapi.sendNews(openid, articles, (err, txt)=> {
 				if(err) return res.send(err)
-				res.send('请自行关闭此窗口')
+				// res.send('请自行关闭此窗口')
 			})
 
 		} else if(page < ye) {
@@ -103,9 +103,9 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              下一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
-			wxapi.sendNews(openid, articles, (err)=> {
+			wxapi.sendNews(openid, articles, (err, txt)=> {
 				if(err) return res.send(err)
-				res.send('请自行关闭此窗口')
+				// res.send('请自行关闭此窗口')
 			})
 		} else if(page = ye) {
 			//
@@ -137,9 +137,9 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              上一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageN}`
 			}]
-			wxapi.sendNews(openid, articles, (err)=> {
+			wxapi.sendNews(openid, articles, (err, txt)=> {
 				if(err) return res.send(err)
-				res.send('请自行关闭此窗口')
+				// res.send('请自行关闭此窗口')
 			})
 		}
 	})
