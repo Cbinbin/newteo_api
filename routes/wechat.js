@@ -88,6 +88,10 @@ router.post('/', (req, res, next)=> {
 					{ 
 						title: `                              共${ye}页`, 
 						url: ``
+					},
+					{ 
+						title: `                              下一页`, 
+						url: `${host.wx}wxsend/news/${openid}`
 					}])
 				} else if(djy.test(message.Content)) {
 					var want = String(message.Content.match(/\u7B2C\d{1,2}\u9875/g))    //提取

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-	, moment = require('moment')
 	, Schema = mongoose.Schema
 
 const requirementSchema = new Schema({

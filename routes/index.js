@@ -7,5 +7,5 @@ module.exports = {
 	requirement: require('./requirement'),
 	partner: require('./partner'),
 	xuqiu: require('./xuqiu'),
-	// wxsend: require('./wxsend')
+	wxsend: require('./wxsend')
 }

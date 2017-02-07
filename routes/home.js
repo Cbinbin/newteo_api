@@ -3,7 +3,7 @@ const router = require('express').Router()
 
 router.get('/', (req, res)=> {
 	res.json({
-		home: host.newteo,
+		api: host.newteo,
 		xuqiu: host.newteo + 'xuqiu',
 		wechat: host.newteo + 'wechat',
 		partner: host.newteo + 'partner',
