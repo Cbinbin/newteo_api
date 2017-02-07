@@ -34,7 +34,7 @@ router.get('/news/:id', (req, res)=> {
 		}]
 	wxapi.sendNews(openid, articles, (err, txt)=> {
 		if(err) return res.send(err)
-		console.log(txt)
+		window.close()
 	})
 })
 
