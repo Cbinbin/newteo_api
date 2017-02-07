@@ -3,26 +3,27 @@ const router = require('express').Router()
 	, Requirement = require('../models/Requirement')
 	, host = require('../utils/hosturl')
 
-// router.get('/', (req, res)=> {
-// 	var signature = req.query.signature
-// 		, timestamp = req.query.timestamp
-// 		, nonce = req.query.nonce
-// 		, echostr = req.query.echostr
-// 		, token = process.env.WX_TOKEN
-// 		, sha1 = crypto.createHash('sha1')
-// 		, sha1Str = sha1.update([token, timestamp, nonce].sort().join('')).digest('hex')
-// 	res.writeHead(200, {'Content-Type': 'text/plain'})
-// 	res.end((sha1Str === signature) ? echostr : '')
-// 	return res
-// })
+router.get('/', (req, res)=> {
+	var signature = req.query.signature
+		, timestamp = req.query.timestamp
+		, nonce = req.query.nonce
+		, echostr = req.query.echostr
+		, token = process.env.WX_TOKEN
+		, sha1 = crypto.createHash('sha1')
+		, sha1Str = sha1.update([token, timestamp, nonce].sort().join('')).digest('hex')
+	res.writeHead(200, {'Content-Type': 'text/plain'})
+	res.end((sha1Str === signature) ? echostr : '')
+	return res
+})
 
-router.post('/', (req, res, next)=> {
+router.post('/c', (req, res, next)=> {
 	var message = req.weixin
 		, openid = message.FromUserName
 		, member1 = process.env.CJB
 		, array_rqId = []
 		, array_rqm = []
 		, ye
+		, n = 2
 		, cn = ['\u4E00', '\u4E8C', '\u4E09', '\u56DB', '\u4E94', '\u516D', '\u4E03', '\u516B', '\u4E5D', '\u5341']
 		, xq = /\u9700\u6C42/g			// 9700 (需)    6C42 (求)
 		, djy = /\u7B2C+\d{1,2}|\u4E00|\u4E8C|\u4E09|\u56DB|\u4E94|\u516D|\u4E03|\u516B|\u4E5D|\u5341+\u9875/g
@@ -44,6 +45,7 @@ router.post('/', (req, res, next)=> {
 
 		} else if(message.MsgType === 'text') {
 			Requirement.find({ }, {__v:0})
+			.sort({create_time: -1})
 			.exec((err, requments)=> {
 				if(err) return res.send(err)
 				requments.map((item)=> {
@@ -91,7 +93,7 @@ router.post('/', (req, res, next)=> {
 					},
 					{ 
 						title: `                              下一页`, 
-						url: `${host.wx}wxsend/news/${openid}`
+						url: `${host.wx}wxsend/news/${openid}/${n}`
 					}])
 				} else if(djy.test(message.Content)) {
 					var want = String(message.Content.match(/\u7B2C\d{1,2}\u9875/g))    //提取
