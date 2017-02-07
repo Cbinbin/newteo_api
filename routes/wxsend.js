@@ -66,6 +66,7 @@ router.get('/news/:id/:n', (req, res)=> {
 			wxapi.sendNews(openid, articles, (err, txt)=> {
 				if(err) return res.send(err)
 				// res.send('请自行关闭此窗口')
+				res.json(txt)
 			})
 
 		} else if(page < ye) {
@@ -106,6 +107,7 @@ router.get('/news/:id/:n', (req, res)=> {
 			wxapi.sendNews(openid, articles, (err, txt)=> {
 				if(err) return res.send(err)
 				// res.send('请自行关闭此窗口')
+				res.json(txt)
 			})
 		} else if(page = ye) {
 			//
@@ -140,6 +142,7 @@ router.get('/news/:id/:n', (req, res)=> {
 			wxapi.sendNews(openid, articles, (err, txt)=> {
 				if(err) return res.send(err)
 				// res.send('请自行关闭此窗口')
+				res.json(txt)
 			})
 		}
 	})
