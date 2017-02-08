@@ -115,12 +115,13 @@ router.get('/news/:id/:n', (req, res)=> {
 					res.send('请自行关闭此窗口')
 					return
 				})
+				return {
 				TF2 = false
 				articles = []
-				console.log(TF2)
+				}
 				console.log(articles)
 			}
-
+			console.log(TF2)
 		} else if(page = ye) {
 			//
 			var pageN = page - 1
