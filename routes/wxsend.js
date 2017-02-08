@@ -108,6 +108,7 @@ router.get('/news/:id/:n', (req, res)=> {
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
+					return openid = 1111
 				})
 				idid = openid
 				console.log(idid)
