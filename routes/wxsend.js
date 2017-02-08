@@ -113,13 +113,9 @@ router.get('/news/:id/:n', (req, res)=> {
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
-					return
 				})
-				return {
-				TF2 = false
-				articles = []
-				}
-				console.log(articles)
+				return TF2 = false
+				console.log(TF2)
 			}
 			console.log(TF2)
 		} else if(page = ye) {
