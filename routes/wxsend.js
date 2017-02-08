@@ -110,13 +110,15 @@ router.get('/news/:id/:n', (req, res)=> {
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
 			if(TF2) {
-				TF2 = false
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
 					return
 				})
+				TF2 = false
+				articles = []
 				console.log(TF2)
+				console.log(articles)
 			}
 
 		} else if(page = ye) {
