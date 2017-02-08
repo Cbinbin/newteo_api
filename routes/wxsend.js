@@ -116,6 +116,7 @@ router.get('/news/:id/:n', (req, res)=> {
 					res.send('请自行关闭此窗口')
 					return TF2 = true
 				})
+				console.log(TF2)
 			}
 		} else if(page = ye) {
 			//
