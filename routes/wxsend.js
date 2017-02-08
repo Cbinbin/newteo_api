@@ -3,7 +3,6 @@ const router = require('express').Router()
 	, Requirement = require('../models/Requirement')
 	, host = require('../utils/hosturl')
 
-var idid
 
 router.get('/news/:id/:n', (req, res)=> {
 	var appid = process.env.WX_APPID
@@ -104,16 +103,10 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              下一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
-			if(openid != idid) {
-				idid = openid
-				console.log(idid)
-				wxapi.sendNews(openid, articles, (err)=> {
-					if(err) return res.send(err)
-					res.send('请自行关闭此窗口')
-					return idid = 1111
-				})
-				return idid
-			}
+			wxapi.sendNews(openid, articles, (err)=> {
+				if(err) return res.send(err)
+				res.send('请自行关闭此窗口')
+			})
 
 		} else if(page = ye) {
 			//
