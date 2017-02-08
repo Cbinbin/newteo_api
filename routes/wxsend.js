@@ -32,6 +32,7 @@ router.get('/news/:id/:n', (req, res)=> {
 		if(page <= 1) {
 			page = 1
 			var pageC = page + 1
+				, TF1 = true
 			var articles = [{ 
 				title: '需求'
 			},
@@ -63,15 +64,20 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              下一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
-			wxapi.sendNews(openid, articles, (err)=> {
-				if(err) return res.send(err)
-				return res.send('请自行关闭此窗口')
-			})
+			if(TF1) {
+				TF1 = false
+				wxapi.sendNews(openid, articles, (err)=> {
+					if(err) return res.send(err)
+					res.send('请自行关闭此窗口')
+					return TF1 = true
+				})
+			}
 
 		} else if(page < ye) {
 			//
 			var pageN = page - 1
 				, pageC = page + 1
+				, TF2
 			var articles = [{ 
 				title: '需求'
 			},
@@ -103,10 +109,15 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              下一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
-			wxapi.sendNews(openid, articles, (err)=> {
-				if(err) return res.send(err)
-				return res.send('请自行关闭此窗口')
-			})
+			if(TF1) {
+				TF1 = false
+				wxapi.sendNews(openid, articles, (err)=> {
+					if(err) return res.send(err)
+					res.send('请自行关闭此窗口')
+					return TF2 = true
+				})
+			}
+
 		} else if(page = ye) {
 			//
 			var pageN = page - 1
