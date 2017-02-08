@@ -3,6 +3,8 @@ const router = require('express').Router()
 	, Requirement = require('../models/Requirement')
 	, host = require('../utils/hosturl')
 
+var TF1 = true
+	, TF2 = true
 
 router.get('/news/:id/:n', (req, res)=> {
 	var appid = process.env.WX_APPID
@@ -32,7 +34,6 @@ router.get('/news/:id/:n', (req, res)=> {
 		if(page <= 1) {
 			page = 1
 			var pageC = page + 1
-				, TF1 = true
 			var articles = [{ 
 				title: '需求'
 			},
@@ -77,7 +78,6 @@ router.get('/news/:id/:n', (req, res)=> {
 			//
 			var pageN = page - 1
 				, pageC = page + 1
-				, TF2 = true
 			var articles = [{ 
 				title: '需求'
 			},
@@ -110,14 +110,13 @@ router.get('/news/:id/:n', (req, res)=> {
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
 			if(TF2) {
+				TF2 = false
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
+					return TF2 = true
 				})
-				return TF2 = false
-				console.log(TF2)
 			}
-			console.log(TF2)
 		} else if(page = ye) {
 			//
 			var pageN = page - 1
