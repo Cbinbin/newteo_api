@@ -77,7 +77,7 @@ router.get('/news/:id/:n', (req, res)=> {
 			//
 			var pageN = page - 1
 				, pageC = page + 1
-				, TF2
+				, TF2 = true
 			var articles = [{ 
 				title: '需求'
 			},
@@ -109,8 +109,8 @@ router.get('/news/:id/:n', (req, res)=> {
 				title: `                              下一页`, 
 				url: `${host.wx}wxsend/news/${openid}/${pageC}`
 			}]
-			if(TF1) {
-				TF1 = false
+			if(TF2) {
+				TF2 = false
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
