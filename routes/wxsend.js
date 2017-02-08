@@ -69,7 +69,7 @@ router.get('/news/:id/:n', (req, res)=> {
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
-					return TF1 = true
+					return
 				})
 			}
 
@@ -114,8 +114,9 @@ router.get('/news/:id/:n', (req, res)=> {
 				wxapi.sendNews(openid, articles, (err)=> {
 					if(err) return res.send(err)
 					res.send('请自行关闭此窗口')
-					return TF2 = true
+					return
 				})
+				console.log(TF2)
 			}
 
 		} else if(page = ye) {
